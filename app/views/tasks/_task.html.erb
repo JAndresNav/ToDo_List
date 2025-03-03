@@ -1,16 +1,18 @@
-<div id="<%= dom_id task %>">
+<div id="<%= dom_id task %>" data-controller="task">
   <p>
-    <strong>Title:</strong>
-    <%= task.title %>
+    <strong>Title:</strong> <%= task.title %>
   </p>
 
   <p>
-    <strong>Description:</strong>
-    <%= task.description %>
+    <strong>Description:</strong> <%= task.description %>
   </p>
 
   <p>
     <strong>Check:</strong>
-    <%= task.check ? "Completed" : "Pending" %>
+    <input type="checkbox" <%= "checked" if task.check %> 
+      data-action="change->task#toggle" 
+      data-task-id="<%= task.id %>">
   </p>
+
+  <button data-action="click->task#delete" data-task-id="<%= task.id %>">Delete</button>
 </div>
