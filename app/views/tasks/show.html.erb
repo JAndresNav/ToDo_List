@@ -1,10 +1,17 @@
-<p style="color: green"><%= notice %></p>
+<% content_for :title, @task.title %>
 
-<%= render @task %>
+<h1><%= @task.title %></h1>
 
-<div>
-  <%= link_to "Edit this task", edit_task_path(@task) %> |
-  <%= link_to "Back to tasks", tasks_path %>
+<p>
+  <strong>Description:</strong>
+  <%= @task.description %>
+</p>
 
-  <%= button_to "Destroy this task", @task, method: :delete %>
-</div>
+<p>
+  <strong>Check:</strong>
+  <%= @task.check ? "Completed" : "Pending" %>
+</p>
+
+<%= link_to "Edit", edit_task_path(@task) %> |
+<%= link_to "Back to tasks", tasks_path %> |
+<%= link_to "Delete", @task, method: :delete, data: { confirm: "Are you sure?" } %>
